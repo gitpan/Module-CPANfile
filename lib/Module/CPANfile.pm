@@ -2,9 +2,8 @@ package Module::CPANfile;
 use strict;
 use warnings;
 use Cwd;
-use Module::CPANfile::Environment;
 
-our $VERSION = '0.9004';
+our $VERSION = '0.9005';
 
 sub new {
     my($class, $file) = @_;
@@ -37,6 +36,121 @@ sub prereq_specs {
     $self->{result}{spec};
 }
 
+package Module::CPANfile::Environment;
+use strict;
+
+my @bindings = qw(
+    on requires recommends suggests conflicts
+    osname perl
+    configure_requires build_requires test_requires author_requires
+);
+
+my $file_id = 1;
+
+sub import {
+    my($class, $result_ref) = @_;
+    my $pkg = caller;
+
+    $$result_ref = Module::CPANfile::Result->new;
+    for my $binding (@bindings) {
+        no strict 'refs';
+        *{"$pkg\::$binding"} = sub { $$result_ref->$binding(@_) };
+    }
+}
+
+sub parse {
+    my $file = shift;
+
+    my $code = do {
+        open my $fh, "<", $file or die "$file: $!";
+        join '', <$fh>;
+    };
+
+    my($res, $err);
+
+    {
+        local $@;
+        $res = eval sprintf <<EVAL, $file_id++;
+package Module::CPANfile::Sandbox%d;
+no warnings;
+my \$_result;
+BEGIN { import Module::CPANfile::Environment \\\$_result };
+
+$code;
+
+\$_result;
+EVAL
+        $err = $@;
+    }
+
+    if ($err) { die "Parsing $file failed: $err" };
+
+    return $res;
+}
+
+package Module::CPANfile::Result;
+use strict;
+
+sub new {
+    bless {
+        phase => 'runtime', # default phase
+        spec  => {},
+    }, shift;
+}
+
+sub on {
+    my($self, $phase, $code) = @_;
+    local $self->{phase} = $phase;
+    $code->()
+}
+
+sub osname { die "TODO" }
+sub perl { die "TODO" }
+
+sub requires {
+    my($self, $module, $requirement) = @_;
+    $self->{spec}{$self->{phase}}{requires}{$module} = $requirement || 0;
+}
+
+sub recommends {
+    my($self, $module, $requirement) = @_;
+    $self->{spec}->{$self->{phase}}{recommends}{$module} = $requirement || 0;
+}
+
+sub suggests {
+    my($self, $module, $requirement) = @_;
+    $self->{spec}->{$self->{phase}}{suggests}{$module} = $requirement || 0;
+}
+
+sub conflicts {
+    my($self, $module, $requirement) = @_;
+    $self->{spec}->{$self->{phase}}{conflicts}{$module} = $requirement || 0;
+}
+
+# Module::Install compatible shortcuts
+
+sub configure_requires {
+    my($self, @args) = @_;
+    $self->on(configure => sub { $self->requires(@args) });
+}
+
+sub build_requires {
+    my($self, @args) = @_;
+    $self->on(build => sub { $self->requires(@args) });
+}
+
+sub test_requires {
+    my($self, @args) = @_;
+    $self->on(test => sub { $self->requires(@args) });
+}
+
+sub author_requires {
+    my($self, @args) = @_;
+    $self->on(develop => sub { $self->requires(@args) });
+}
+
+package Module::CPANfile;
+
 1;
 
 __END__
@@ -50,7 +164,7 @@ Module::CPANfile - Parse cpanfile
   use Module::CPANfile;
 
   my $file = Module::CPANfile->load("cpanfile");
-  my $meta = $file->prereqs; # CPAN::Meta::Prereqs object
+  my $prereq = $file->prereq; # CPAN::Meta::Prereqs object
 
 =head1 DESCRIPTION
 
