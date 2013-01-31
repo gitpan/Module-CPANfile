@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Cwd;
 
-our $VERSION = '0.9007';
+our $VERSION = '0.9008';
 
 sub new {
     my($class, $file) = @_;
@@ -36,6 +36,22 @@ sub prereq {
 sub prereq_specs {
     my $self = shift;
     $self->{result}{spec};
+}
+
+sub merge_meta {
+    my($self, $file, $version) = @_;
+
+    require CPAN::Meta;
+
+    $version ||= $file =~ /\.yml$/ ? '1.4' : '2';
+
+    my $prereq = $self->prereqs;
+
+    my $meta = CPAN::Meta->load_file($file);
+    my $prereqs_hash = $prereq->with_merged_prereqs($meta->effective_prereqs)->as_string_hash;
+    my $struct = { %{$meta->as_struct}, prereqs => $prereqs_hash };
+
+    CPAN::Meta->new($struct)->save($file, { version => $version });
 }
 
 package Module::CPANfile::Environment;
@@ -168,10 +184,44 @@ Module::CPANfile - Parse cpanfile
   my $file = Module::CPANfile->load("cpanfile");
   my $prereqs = $file->prereqs; # CPAN::Meta::Prereqs object
 
+  $file->merge_meta('MYMETA.json');
+
 =head1 DESCRIPTION
 
 Module::CPANfile is a tool to handle L<cpanfile> format to load application
 specific dependencies, not just for CPAN distributions.
+
+=head1 METHODS
+
+=over 4
+
+=item load
+
+  $file = Module::CPANfile->load;
+  $file = Module::CPANfile->load('cpanfile');
+
+Load and parse a cpanfile. By default it tries to load C<cpanfile> in
+the current directory, unless you pass the path to its argument.
+
+=item prereqs
+
+Returns L<CPAN::Meta::Prereqs> object out of the parsed cpanfile.
+
+=item prereq_specs
+
+Returns a hash reference that should be passed to C<< CPAN::Meta::Prereqs->new >>.
+
+=item merge_meta
+
+  $file->merge_meta('META.yml');
+  $file->merge_meta('MYMETA.json', '2.0');
+
+Merge the effective prereqs with Meta speicifcation loaded from the
+given META file, using CPAN::Meta. You can specify the META spec
+version in the second argument, which defaults to 1.4 in case the
+given file is YAML, and 2 if it is JSON.
+
+=back
 
 =head1 AUTHOR
 
