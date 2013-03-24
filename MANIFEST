@@ -1,14 +1,19 @@
 Changes
+LICENSE
+MANIFEST
+META.json
+META.yml
+Makefile.PL
+README
+cpanfile
+dist.ini
+lib/Module/CPANfile.pm
 lib/cpanfile-faq.pod
 lib/cpanfile.pod
-lib/Module/CPANfile.pm
-Makefile.PL
-MANIFEST			This list of files
-README.md
 script/mymeta-cpanfile
+t/00-compile.t
+t/Utils.pm
 t/from_prereqs.t
 t/merge.t
 t/parse.t
-t/Utils.pm
-META.yml                                 Module YAML meta-data (added by MakeMaker)
-META.json                                Module JSON meta-data (added by MakeMaker)
+t/release-pod-syntax.t

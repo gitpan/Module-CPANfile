@@ -1,22 +1,22 @@
 ---
-abstract: 'A format for describing CPAN dependencies of Perl applications'
+abstract: 'Parse cpanfile'
 author:
-  - 'Tatsuhiko Miyagawa'
-build_requires:
-  ExtUtils::MakeMaker: 0
+  - 'Tatsuhiko Miyagawa <miyagawa@bulknews.net>'
+build_requires: {}
 configure_requires:
-  ExtUtils::MakeMaker: 6.31
-dynamic_config: 1
-generated_by: 'ExtUtils::MakeMaker version 6.64, CPAN::Meta::Converter version 2.120921'
+  ExtUtils::MakeMaker: 6.30
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.300031, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Module-CPANfile
-no_index:
-  directory:
-    - t
-    - inc
 requires:
-  perl: 5.008001
-version: 0.9021
+  CPAN::Meta: 2.12091
+  CPAN::Meta::Prereqs: 2.12091
+resources:
+  bugtracker: https://github.com/miyagawa/cpanfile/issues
+  homepage: https://github.com/miyagawa/cpanfile
+  repository: https://github.com/miyagawa/cpanfile.git
+version: 0.9022

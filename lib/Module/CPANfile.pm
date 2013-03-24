@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Cwd;
 
-our $VERSION = '0.9021';
+our $VERSION = '0.9022';
 
 sub new {
     my($class, $file) = @_;
@@ -106,7 +106,7 @@ use strict;
 
 my @bindings = qw(
     on requires recommends suggests conflicts
-    osname perl
+    osname
     configure_requires build_requires test_requires author_requires
 );
 
@@ -178,7 +178,6 @@ sub on {
 }
 
 sub osname { die "TODO" }
-sub perl { die "TODO" }
 
 sub requires {
     my($self, $module, $requirement) = @_;
@@ -337,5 +336,3 @@ Tatsuhiko Miyagawa
 L<cpanfile>, L<CPAN::Meta>, L<CPAN::Meta::Spec>
 
 =cut
-
-
