@@ -4,9 +4,6 @@ use Test::More;
 use POSIX qw(locale_h);
 use t::Utils;
 
-eval { require CPAN::Meta::Prereqs; 1 }
-  or plan skip_all => "CPAN::Meta::Prereqs not found";
-
 {
     # Use the traditional UNIX system locale to check the error message string.
     my $old_locale = setlocale(LC_ALL);
@@ -17,6 +14,15 @@ eval { require CPAN::Meta::Prereqs; 1 }
     like $@, qr/No such file/;
     setlocale(LC_ALL, $old_locale);
 }
+
+{
+    my $r = write_cpanfile(<<FILE);
+foo();
+FILE
+    eval { Module::CPANfile->load };
+    like $@, qr/cpanfile line 1/;
+}
+
 
 {
     my $r = write_cpanfile(<<FILE);

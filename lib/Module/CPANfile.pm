@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use Cwd;
 
-our $VERSION = '0.9026';
+our $VERSION = '0.9027';
 
 sub new {
     my($class, $file) = @_;
@@ -142,6 +142,7 @@ no warnings;
 my \$_result;
 BEGIN { import Module::CPANfile::Environment \\\$_result };
 
+# line 1 "$file"
 $code;
 
 \$_result;
