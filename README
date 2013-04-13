@@ -7,6 +7,9 @@ SYNOPSIS
       my $file = Module::CPANfile->load("cpanfile");
       my $prereqs = $file->prereqs; # CPAN::Meta::Prereqs object
 
+      my @features = $file->features; # CPAN::Meta::Feature objects
+      my $merged_prereqs = $file->prereqs_with(@identifiers); # CPAN::Meta::Prereqs
+
       $file->merge_meta('MYMETA.json');
 
 DESCRIPTION
@@ -45,6 +48,14 @@ METHODS
     prereq_specs
         Returns a hash reference that should be passed to
         "CPAN::Meta::Prereqs->new".
+
+    features
+        Returns a list of features available in the cpanfile as
+        CPAN::Meta::Feature.
+
+    prereqs_with(@identifiers)
+        Retuens CPAN::Meta::Prereqs object, with merged prereqs for features
+        identified with the @identifiers.
 
     to_string($include_empty)
           $file->to_string;

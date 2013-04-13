@@ -11,8 +11,8 @@ lib/Module/CPANfile.pm
 lib/cpanfile-faq.pod
 lib/cpanfile.pod
 script/mymeta-cpanfile
-t/00-compile.t
 t/Utils.pm
+t/feature.t
 t/from_prereqs.t
 t/merge.t
 t/parse.t

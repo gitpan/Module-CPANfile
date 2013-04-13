@@ -10,7 +10,7 @@ use ExtUtils::MakeMaker 6.30;
 
 my %WriteMakefileArgs = (
   "ABSTRACT" => "Parse cpanfile",
-  "AUTHOR" => "Tatsuhiko Miyagawa <miyagawa\@bulknews.net>",
+  "AUTHOR" => "Tatsuhiko Miyagawa",
   "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
@@ -25,8 +25,10 @@ my %WriteMakefileArgs = (
     "CPAN::Meta" => "2.12091",
     "CPAN::Meta::Prereqs" => "2.12091"
   },
-  "TEST_REQUIRES" => {},
-  "VERSION" => "0.9027",
+  "TEST_REQUIRES" => {
+    "Test::More" => "0.86"
+  },
+  "VERSION" => "0.9028",
   "test" => {
     "TESTS" => "t/*.t"
   }
