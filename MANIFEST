@@ -17,3 +17,4 @@ t/from_prereqs.t
 t/merge.t
 t/parse.t
 t/release-pod-syntax.t
+t/requirement.t
