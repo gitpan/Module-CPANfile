@@ -4,7 +4,7 @@ use warnings;
 use Cwd;
 use Carp ();
 
-our $VERSION = '0.9029';
+our $VERSION = '0.9030';
 
 sub new {
     my($class, $file) = @_;
@@ -68,7 +68,7 @@ sub prereqs_with {
     my $prereqs = $self->prereqs;
     my @others = map { $self->feature($_)->prereqs } @feature_identifiers;
 
-    $prereqs->with_merged_prereqs(@others);
+    $prereqs->with_merged_prereqs(\@others);
 }
 
 sub prereq {
