@@ -1,5 +1,8 @@
 Revision history for Module::Install::CPANfile
 
+0.9033  2013-06-05 11:38:56 JST
+        - merge with git master
+
 0.9032  2013-06-05 11:35:58 JST
         - repackage for PAUSE
 
