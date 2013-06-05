@@ -1,5 +1,8 @@
 Revision history for Module::Install::CPANfile
 
+0.9034  2013-06-05 12:09:11 JST
+        - split .pm files, mainly for PAUSE
+
 0.9033  2013-06-05 11:38:56 JST
         - merge with git master
 

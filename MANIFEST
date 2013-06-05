@@ -8,6 +8,8 @@ README
 cpanfile
 dist.ini
 lib/Module/CPANfile.pm
+lib/Module/CPANfile/Environment.pm
+lib/Module/CPANfile/Result.pm
 lib/cpanfile-faq.pod
 lib/cpanfile.pod
 script/mymeta-cpanfile
