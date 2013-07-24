@@ -53,8 +53,8 @@ METHODS
         Returns a list of features available in the cpanfile as
         CPAN::Meta::Feature.
 
-    prereqs_with(@identifiers)
-        Retuens CPAN::Meta::Prereqs object, with merged prereqs for features
+    prereqs_with(@identifiers), effective_prereqs(\@identifiers)
+        Returns CPAN::Meta::Prereqs object, with merged prereqs for features
         identified with the @identifiers.
 
     to_string($include_empty)
