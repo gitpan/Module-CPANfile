@@ -30,7 +30,7 @@ resources:
   bugtracker: https://github.com/miyagawa/cpanfile/issues
   homepage: https://github.com/miyagawa/cpanfile
   repository: https://github.com/miyagawa/cpanfile.git
-version: 1.0000
+version: 1.0001
 x_contributors:
   - 'David Steinbrunner <dsteinbrunner@pobox.com>'
   - 'Masahiro Honma <hiratara@cpan.org>'
