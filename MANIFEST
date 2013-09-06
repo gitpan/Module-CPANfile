@@ -12,6 +12,7 @@ lib/Module/CPANfile/Environment.pm
 lib/Module/CPANfile/Result.pm
 lib/cpanfile-faq.pod
 lib/cpanfile.pod
+script/cpanfile-dump
 script/mymeta-cpanfile
 t/Utils.pm
 t/feature.t
