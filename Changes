@@ -1,5 +1,9 @@
 Revision history for Module::Install::CPANfile
 
+1.0900  2013-09-19 18:45:59 JST
+        - Experimental support for git URL specification
+        - Complete rewrite of internal to preserve original prereq statement as much as possible
+
 1.0002  2013-09-06 12:26:11 PDT
         - Add cpanfile-dump utility (xdg)
 

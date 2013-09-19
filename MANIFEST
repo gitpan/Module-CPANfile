@@ -9,7 +9,10 @@ cpanfile
 dist.ini
 lib/Module/CPANfile.pm
 lib/Module/CPANfile/Environment.pm
-lib/Module/CPANfile/Result.pm
+lib/Module/CPANfile/Features.pm
+lib/Module/CPANfile/Prereq.pm
+lib/Module/CPANfile/Prereqs.pm
+lib/Module/CPANfile/Requirement.pm
 lib/cpanfile-faq.pod
 lib/cpanfile.pod
 script/cpanfile-dump
@@ -20,3 +23,4 @@ t/from_prereqs.t
 t/merge.t
 t/parse.t
 t/release-pod-syntax.t
+t/requirement.t
