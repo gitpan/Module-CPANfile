@@ -4,10 +4,9 @@ use warnings;
 use Cwd;
 use Carp ();
 use Module::CPANfile::Environment;
-use Module::CPANfile::Features;
 use Module::CPANfile::Requirement;
 
-our $VERSION = '1.0900';
+our $VERSION = '1.0901';
 
 sub new {
     my($class, $file) = @_;

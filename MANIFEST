@@ -9,7 +9,6 @@ cpanfile
 dist.ini
 lib/Module/CPANfile.pm
 lib/Module/CPANfile/Environment.pm
-lib/Module/CPANfile/Features.pm
 lib/Module/CPANfile/Prereq.pm
 lib/Module/CPANfile/Prereqs.pm
 lib/Module/CPANfile/Requirement.pm
