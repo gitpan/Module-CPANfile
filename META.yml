@@ -7,7 +7,7 @@ build_requires:
 configure_requires:
   ExtUtils::MakeMaker: 6.30
 dynamic_config: 0
-generated_by: 'Dist::Milla version v1.0.4, Dist::Zilla version 4.300038, CPAN::Meta::Converter version 2.132510'
+generated_by: 'Dist::Milla version v1.0.4, Dist::Zilla version 4.300039, CPAN::Meta::Converter version 2.132620'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -31,7 +31,7 @@ resources:
   bugtracker: https://github.com/miyagawa/cpanfile/issues
   homepage: https://github.com/miyagawa/cpanfile
   repository: https://github.com/miyagawa/cpanfile.git
-version: 1.0901
+version: 1.0902
 x_contributors:
   - 'Atsushi Kato <ktat@cpan.org>'
   - 'David Golden <dagolden@cpan.org>'
