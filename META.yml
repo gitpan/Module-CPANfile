@@ -31,7 +31,7 @@ resources:
   bugtracker: https://github.com/miyagawa/cpanfile/issues
   homepage: https://github.com/miyagawa/cpanfile
   repository: https://github.com/miyagawa/cpanfile.git
-version: 1.0902
+version: 1.0903
 x_contributors:
   - 'Atsushi Kato <ktat@cpan.org>'
   - 'David Golden <dagolden@cpan.org>'

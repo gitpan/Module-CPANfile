@@ -6,7 +6,7 @@ use Carp ();
 use Module::CPANfile::Environment;
 use Module::CPANfile::Requirement;
 
-our $VERSION = '1.0902';
+our $VERSION = '1.0903';
 
 sub new {
     my($class, $file) = @_;
@@ -66,6 +66,11 @@ sub prereq { shift->prereqs }
 sub prereqs {
     my $self = shift;
     $self->{_prereqs}->as_cpan_meta;
+}
+
+sub merged_requirements {
+    my $self = shift;
+    $self->{_prereqs}->merged_requirements;
 }
 
 sub effective_prereqs {
