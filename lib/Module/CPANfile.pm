@@ -6,7 +6,7 @@ use Carp ();
 use Module::CPANfile::Environment;
 use Module::CPANfile::Requirement;
 
-our $VERSION = '1.0905';
+our $VERSION = '1.1000';
 
 sub new {
     my($class, $file) = @_;
@@ -280,7 +280,7 @@ if you want to convert L<CPAN::Meta::Prereqs> to a new cpanfile.
   # read MYMETA's prereqs and print cpanfile representation of it
   my $meta = CPAN::Meta->load_file('MYMETA.json');
   my $file = Module::CPANfile->from_prereqs($meta->prereqs);
-  print $file->to_sring;
+  print $file->to_string;
 
 By default, it omits the phase where there're no modules
 registered. If you pass the argument of a true value, it will print
